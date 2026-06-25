@@ -10,8 +10,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Create non-root user (BEST PRACTICE)
-#RUN useradd -m appuser
-USER root
+RUN useradd -m appuser
 
 COPY --from=builder /root/.local /root/.local
 COPY src/ ./src
@@ -19,8 +18,7 @@ COPY src/ ./src
 ENV PATH=/root/.local/bin:$PATH
 
 # Switch user
-#USER appuser
-USER root
+USER appuser
 
 EXPOSE 5000
 
