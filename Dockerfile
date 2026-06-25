@@ -1,6 +1,5 @@
 # -------- Builder stage --------
 FROM python:3.9-slim AS builder
-USER root
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
@@ -11,7 +10,8 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Create non-root user (BEST PRACTICE)
-RUN useradd -m appuser
+#RUN useradd -m appuser
+RUN useradd -m root
 
 COPY --from=builder /root/.local /root/.local
 COPY src/ ./src
