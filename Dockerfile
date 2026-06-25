@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Create non-root user (BEST PRACTICE)
 #RUN useradd -m appuser
-RUN useradd -m root
+USER root
 
 COPY --from=builder /root/.local /root/.local
 COPY src/ ./src
@@ -19,7 +19,8 @@ COPY src/ ./src
 ENV PATH=/root/.local/bin:$PATH
 
 # Switch user
-USER appuser
+#USER appuser
+USER root
 
 EXPOSE 5000
 
