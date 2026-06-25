@@ -1,6 +1,6 @@
 # -------- Builder stage --------
 FROM python:3.9-slim AS builder
-
+USER root
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
